@@ -9,7 +9,13 @@ import { ItemListModule } from './item-list/item-list.module';
 import { AccountModule } from './account/account.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(dataSourceOptions), UserModule, ListModule, ItemListModule, AccountModule],
+  imports: [
+    TypeOrmModule.forRoot(dataSourceOptions),
+    UserModule,
+    ListModule,
+    ItemListModule,
+    AccountModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

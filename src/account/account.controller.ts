@@ -21,12 +21,12 @@ export class AccountController {
   @Post()
   @HttpCode(200)
   @UsePipes(ValidationPipe)
-  create(@Body() createAccountDto: CreateAccountDto) {
+  async create(@Body() createAccountDto: CreateAccountDto) {
+    console.log(createAccountDto);
     return this.accountService.create(createAccountDto);
   }
 
   @Post('create')
-  @HttpCode(200)
   @UsePipes(ValidationPipe)
   async createAccount(@Body() accountData: CreateAccountDto) {
     return await this.accountService.createNewAccount(accountData);
