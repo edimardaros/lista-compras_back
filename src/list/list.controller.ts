@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ListService } from './list.service';
 import { CreateListDto } from './dto/create-list.dto';
 import { UpdateListDto } from './dto/update-list.dto';
+import { List } from './entities/list.entity';
 
 @Controller('list')
 export class ListController {
@@ -40,6 +43,9 @@ export class ListController {
     return this.listService.remove(+id);
   }
 
-  // @Post('create')
-  // saveList() {}
+  @Post('create')
+  @UsePipes(ValidationPipe)
+  async saveList(@Body() list: CreateListDto): Promise<List> {
+    return await this.listService.createNewList(list);
+  }
 }

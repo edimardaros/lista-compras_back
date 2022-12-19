@@ -1,9 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateListDto } from './dto/create-list.dto';
 import { UpdateListDto } from './dto/update-list.dto';
+import { List } from './entities/list.entity';
 
 @Injectable()
 export class ListService {
+  constructor(
+    @InjectRepository(List)
+    private listRepository: Repository<List>,
+  ) {}
+
   create(createListDto: CreateListDto) {
     return 'This action adds a new list';
   }
@@ -22,5 +30,9 @@ export class ListService {
 
   remove(id: number) {
     return `This action removes a #${id} list`;
+  }
+
+  async createNewList(list: CreateListDto): Promise<List> {
+    return await this.listRepository.save(list);
   }
 }

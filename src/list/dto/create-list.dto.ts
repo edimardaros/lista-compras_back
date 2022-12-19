@@ -1,11 +1,11 @@
 import { IsNotEmpty, Length } from 'class-validator';
 
 export class CreateListDto {
-  @IsNotEmpty({ message: 'O email não pode ser nulo' })
+  @IsNotEmpty({ message: 'A descricao não pode ser nula' })
   @Length(3, 255)
-  email: string;
+  desc: string;
 
-  @IsNotEmpty({ message: 'A senha não pode ser nula' })
-  @Length(3, 255)
-  password: string;
+  // @IsNotEmpty({ message: 'A senha não pode ser nula' })
+  // @Length(3, 255)
+  // user: number;
 }
